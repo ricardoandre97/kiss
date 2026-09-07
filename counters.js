@@ -1,2 +1,2 @@
 // Managed by CI. Keep this object valid JSON (quoted keys).
-window.COUNTERS = {"cat": 0, "duck": 0};
+window.COUNTERS = {"cat": 2, "duck": 78};

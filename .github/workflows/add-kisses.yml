@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       who:
-        description: Who is owed the kisses
+        description: Whose tally (cat = pending from duck, duck = pending from cat)
         required: true
         type: choice
         options:

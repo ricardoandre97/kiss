@@ -260,9 +260,9 @@ h1 {
 .unit {
   margin: 0.3rem 0 0;
   color: var(--muted);
-  font-size: 1.05rem;
+  font-size: 1.08rem;
   font-style: italic;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.02em;
 }
 
 .rule {
