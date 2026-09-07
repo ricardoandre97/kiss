@@ -1,0 +1,7 @@
+.git
+.github
+scripts
+Dockerfile
+.dockerignore
+_site
+.DS_Store

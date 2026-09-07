@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Owed kiss counter</title>
+    <meta name="description" content="Owed kiss counter" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💋</text></svg>" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Fredoka:wght@500;600&family=Great+Vibes&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="counters.js"></script>
+  </head>
+  <body>
+    <div class="atmosphere" aria-hidden="true">
+      <span class="orb orb-a"></span>
+      <span class="orb orb-b"></span>
+      <span class="orb orb-c"></span>
+    </div>
+    <div class="petals" aria-hidden="true"></div>
+    <div class="sparkles" aria-hidden="true"></div>
+    <div class="vignette" aria-hidden="true"></div>
+
+    <main class="page">
+      <header class="hero">
+        <p class="flourish">✿ ♡ ✿</p>
+        <h1>Owed kiss counter</h1>
+        <p class="script">cat &amp; duck</p>
+      </header>
+
+      <section class="pair" aria-label="Kiss counters">
+        <article class="critter cat">
+          <figure class="frame">
+            <span class="tape" aria-hidden="true"></span>
+            <img src="assets/cat.gif" alt="A ginger-and-white cat with a polite little smile" />
+            <figcaption>cat</figcaption>
+          </figure>
+          <p class="count" id="count-cat">0</p>
+          <p class="unit">kisses owed</p>
+        </article>
+
+        <div class="between" aria-hidden="true">
+          <span class="heart">♡</span>
+        </div>
+
+        <article class="critter duck">
+          <figure class="frame">
+            <span class="tape" aria-hidden="true"></span>
+            <img src="assets/duck.gif" alt="A cool cartoon duck doing gentle wiggles" />
+            <figcaption>duck</figcaption>
+          </figure>
+          <p class="count" id="count-duck">0</p>
+          <p class="unit">kisses owed</p>
+        </article>
+      </section>
+
+      <div class="rule" role="separator">
+        <span></span>
+        ✿
+        <span></span>
+      </div>
+    </main>
+
+    <script>
+      (function () {
+        var counts = window.COUNTERS || { cat: 0, duck: 0 };
+        var cat = document.getElementById("count-cat");
+        var duck = document.getElementById("count-duck");
+        if (cat) cat.textContent = counts.cat;
+        if (duck) duck.textContent = counts.duck;
+
+        var petals = document.querySelector(".petals");
+        var sparkles = document.querySelector(".sparkles");
+        var i;
+
+        var kinds = ["", "blush", "gold"];
+        for (i = 0; i < 16; i++) {
+          var petal = document.createElement("span");
+          var kind = kinds[i % kinds.length];
+          petal.className = kind ? "petal " + kind : "petal";
+          petal.style.left = Math.random() * 100 + "%";
+          petal.style.animationDuration = 18 + Math.random() * 12 + "s";
+          petal.style.animationDelay = (i * 0.9) + "s";
+          petal.style.setProperty("--size", (0.85 + Math.random() * 1.15).toFixed(2));
+          petals.appendChild(petal);
+        }
+
+        for (i = 0; i < 22; i++) {
+          var sparkle = document.createElement("span");
+          sparkle.className = "sparkle";
+          sparkle.style.left = Math.random() * 100 + "%";
+          sparkle.style.top = Math.random() * 100 + "%";
+          sparkle.style.animationDuration = 2.2 + Math.random() * 2.8 + "s";
+          sparkle.style.animationDelay = Math.random() * 4 + "s";
+          sparkles.appendChild(sparkle);
+        }
+      })();
+    </script>
+  </body>
+</html>

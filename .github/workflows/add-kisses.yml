@@ -1,0 +1,49 @@
+name: Add kisses
+
+on:
+  workflow_dispatch:
+    inputs:
+      who:
+        description: Who is owed the kisses
+        required: true
+        type: choice
+        options:
+          - cat
+          - duck
+      delta:
+        description: How many to add (use a negative number to settle)
+        required: true
+        default: "1"
+        type: string
+
+concurrency:
+  group: counters
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Update counters.js
+        env:
+          WHO: ${{ inputs.who }}
+          DELTA: ${{ inputs.delta }}
+        run: python3 scripts/bump_counter.py
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add counters.js
+          if git diff --staged --quiet; then
+            echo "No change to commit"
+            exit 0
+          fi
+          git commit -m "Add ${{ inputs.delta }} kiss(es) for ${{ inputs.who }}"
+          git push
